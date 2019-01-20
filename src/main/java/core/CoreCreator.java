@@ -27,7 +27,10 @@ public class CoreCreator implements WebSocketCreator {
     @Override
     public Object createWebSocket(ServletUpgradeRequest request, ServletUpgradeResponse response) {
         // apply the specified socket if the name of the `socketType` delivered from remote endpoint xxDD
-        String socketType = request.getParameterMap().get("socketType").get(0);
+        String socketType = "";
+        if (request.getParameterMap().containsKey("socketType")) {
+            socketType = request.getParameterMap().get("socketType").get(0);
+        }
 
         for (String sub : request.getSubProtocols()) {
 
@@ -44,16 +47,16 @@ public class CoreCreator implements WebSocketCreator {
             }
         }
 
-        if (socketType != null && !socketType.equals("")) {
+        if (socketType != null && !socketType.equals("") && !socketType.equals("null")) {
             Class<CoreCreator> clazz = CoreCreator.class;
             try {
                 Field field = clazz.getDeclaredField(socketType);
                 field.setAccessible(true);
-                return  field.get(this);
+                return field.get(this);
             } catch (NoSuchFieldException | IllegalAccessException e) {
                 return fastSocket;
             }
         }
-        return  fastSocket;
+        return fastSocket;
     }
 }
