@@ -12,11 +12,19 @@
     <description>yukai is awsome xxDDDD</description>
 
     <dependencies>
+
         <dependency>
             <groupId>org.eclipse.jetty.aggregate</groupId>
             <artifactId>jetty-all</artifactId>
             <version>9.2.14.v20151106</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.14.v20181114</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -34,4 +42,11 @@
     </plugin>
     </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>nexus-zm</id>
+            <name>Nexus zm</name>
+            <url>http://maven.data.zm/repository/maven-public/</url>
+        </repository>
+    </repositories>
 </project>
