@@ -1,7 +1,7 @@
-package core;
+package brilliant.core;
 
-import core.emun.SocketType;
-import core.socket.FastSocket;
+import brilliant.core.emun.SocketType;
+import brilliant.core.socket.FastSocket;
 
 import java.util.ArrayList;
 import java.util.List;

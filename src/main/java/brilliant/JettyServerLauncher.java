@@ -1,4 +1,6 @@
-import core.XBHandler;
+package brilliant;
+
+import brilliant.core.XBHandler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
 import java.util.Arrays;
