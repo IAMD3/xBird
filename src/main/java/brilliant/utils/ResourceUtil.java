@@ -51,6 +51,7 @@ public class ResourceUtil {
             String qualifiedClassName = StringParseUtil.converToQualifiedClassName(classPath, packageName);
             String classPackageName = StringParseUtil.convertToClassPackageName(qualifiedClassName);
 
+            resource.setAbsoluteClassPath(classPath);
             resource.setFile(f);
             resource.setClassName(qualifiedClassName);
             resource.setPackageName(classPackageName);

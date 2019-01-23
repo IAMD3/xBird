@@ -31,10 +31,12 @@ public class StringParseUtil {
         return filePath.replace(File.separator, "/");
     }
 
+    // return qualifiedClass name via a given super packageName(obtained by the class which is the input for the scanner)
+    // 生成类完整名
     public static String converToQualifiedClassName(String absolutePath, String packageName) {
-        String[] relativeClassPaths = absolutePath.split(StringParseUtil.convertToResourcePath(packageName));
-        String qualifiedClassPath = relativeClassPaths.length > 1 ? relativeClassPaths[1] : relativeClassPaths[0];
-        return convertToPackageName(qualifiedClassPath);
+        int firstOccurredIndex = absolutePath.indexOf(StringParseUtil.convertToResourcePath(packageName));
+
+        return convertToPackageName(absolutePath.substring(firstOccurredIndex));
     }
 
     //  brilliant.core.CoreCreator - > brilliant.core
@@ -47,8 +49,7 @@ public class StringParseUtil {
             return pieces[0];
         }
 
-        List<String> piecesList = Arrays.asList(pieces);
-        piecesList.remove(piecesList.size() - 1);
+        List<String> piecesList = Arrays.asList(Arrays.copyOf(pieces,pieces.length-1));
 
         StringBuilder sb = new StringBuilder();
         piecesList.forEach(str -> sb.append(str + "."));

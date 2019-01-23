@@ -1,7 +1,6 @@
 package brilliant.core.model;
 
 
-
 import java.io.File;
 
 /**
@@ -14,6 +13,7 @@ public class XBResource {
     private File file;
     private String className;
     private String packageName;
+    private String absoluteClassPath;
 
     public File getFile() {
         return file;
@@ -37,5 +37,13 @@ public class XBResource {
 
     public void setPackageName(String packageName) {
         this.packageName = packageName;
+    }
+
+    public String getAbsoluteClassPath() {
+        return absoluteClassPath;
+    }
+
+    public void setAbsoluteClassPath(String absoluteClassPath) {
+        this.absoluteClassPath = absoluteClassPath;
     }
 }
