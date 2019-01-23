@@ -2,9 +2,11 @@ package brilliant;
 
 
 import brilliant.tool.XBScanner;
+import brilliant.utils.parsers.StringParseUtil;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.net.URISyntaxException;
 import java.util.Set;
 
 /**
@@ -13,10 +15,22 @@ import java.util.Set;
  * @Description : Yukai is so handsome xxD
  */
 public class Draft {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, URISyntaxException {
         //System.out.println((char)42);
         //System.out.println((char)63);
-        String pName =Draft.class.getPackage().getName();
+     /*   String pName =Draft.class.getPackage().getName();
         Set<URL> urls = XBScanner.findClassDefiniationNames(pName);
+        System.out.println("aba".replace("a","k"));*/
+  /*   String str= "C:\\Users\\Yukai\\Desktop\\newGroup\\project\\spring-boot\\spring-boot-samples\\demo\\target\\classes\\com\\example\\demo.class";
+        System.out.println(ClassPathMacher.isClassPath(str));
+  */
+
+      /*  String path = "C:\\Users\\Yukai\\Desktop\\newGroup\\project\\xbird\\src\\main\\java\\brilliant\\core\\XBHandler.java";
+        String path_parse= StringParseUtil.parseUniversalFilePath(path);
+        File file = new File(path_parse);
+        File[] files = file.listFiles();
+*/
+
+        Set<File> files = XBScanner.scanClass(Draft.class);
     }
 }
