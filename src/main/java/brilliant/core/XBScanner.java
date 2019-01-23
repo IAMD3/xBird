@@ -1,4 +1,4 @@
-package brilliant.tool;
+package brilliant.core;
 
 import brilliant.utils.ResourceUtil;
 import brilliant.utils.machers.impl.ClassPathMacher;
@@ -25,6 +25,7 @@ public class XBScanner {
         LinkedHashSet<File> fileContainer = new LinkedHashSet<>();
 
         String packageName = clazz.getPackage().getName();
+        // normally there would be only one url found
         Set<URL> urls = findUrls(packageName);
 
         for (URL url : urls) {
@@ -40,7 +41,7 @@ public class XBScanner {
     //basePackage - > relative path -> getResources(with the help of classloader)
     //Yukai is awesome !
     private static Set<URL> findUrls(String basePackage) throws IOException {
-        String packagePath = StringParseUtil.covertPackageNameToResourcePath(basePackage);
+        String packagePath = StringParseUtil.convertToResourcePath(basePackage);
 
         return findResources(packagePath);
     }

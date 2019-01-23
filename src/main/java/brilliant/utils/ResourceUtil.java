@@ -1,10 +1,13 @@
 package brilliant.utils;
 
+import brilliant.core.model.XBResource;
 import brilliant.utils.machers.XBMacher;
-import brilliant.utils.machers.impl.ClassPathMacher;
+import brilliant.utils.parsers.StringParseUtil;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -23,7 +26,7 @@ public class ResourceUtil {
         }
 
         File[] contents = dir.listFiles();
-        if(contents==null){
+        if (contents == null) {
             return;
         }
         Arrays.sort(contents);
@@ -36,5 +39,25 @@ public class ResourceUtil {
                 }
             }
         }
+    }
+
+    public static Set<XBResource> assembleXBResource(Collection<File> files, String packageName) {
+        Set<XBResource> resources = new HashSet<>();
+
+        files.stream().forEach(f -> {
+            XBResource resource = new XBResource();
+
+            String classPath = StringParseUtil.parseToUniversalFilePath(f.getAbsolutePath());
+            String qualifiedClassName = StringParseUtil.converToQualifiedClassName(classPath, packageName);
+            String classPackageName = StringParseUtil.convertToClassPackageName(qualifiedClassName);
+
+            resource.setFile(f);
+            resource.setClassName(qualifiedClassName);
+            resource.setPackageName(classPackageName);
+
+            resources.add(resource);
+        });
+
+        return resources;
     }
 }

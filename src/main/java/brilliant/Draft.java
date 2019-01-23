@@ -1,8 +1,8 @@
 package brilliant;
 
 
-import brilliant.tool.XBScanner;
-import brilliant.utils.parsers.StringParseUtil;
+import brilliant.core.XBApplication;
+import brilliant.core.XBScanner;
 
 import java.io.File;
 import java.io.IOException;
@@ -26,11 +26,11 @@ public class Draft {
   */
 
       /*  String path = "C:\\Users\\Yukai\\Desktop\\newGroup\\project\\xbird\\src\\main\\java\\brilliant\\core\\XBHandler.java";
-        String path_parse= StringParseUtil.parseUniversalFilePath(path);
+        String path_parse= StringParseUtil.parseToUniversalFilePath(path);
         File file = new File(path_parse);
         File[] files = file.listFiles();
 */
 
-        Set<File> files = XBScanner.scanClass(Draft.class);
+        new XBApplication(Draft.class);
     }
 }
