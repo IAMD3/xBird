@@ -50,7 +50,8 @@ public class XBScanner {
         Set<URL> result = new LinkedHashSet();
         ClassLoader cl = XBScanner.class.getClassLoader();
 
-        Enumeration resourceUrls = cl != null ? cl.getResources(packagePath) : ClassLoader.getSystemResources(packagePath);
+        //Enumeration resourceUrls = cl != null ? cl.getResources(packagePath) : ClassLoader.getSystemResources(packagePath);
+        Enumeration resourceUrls = ClassLoader.getSystemResources(packagePath);
 
         while (resourceUrls.hasMoreElements()) {
             URL url = (URL) resourceUrls.nextElement();

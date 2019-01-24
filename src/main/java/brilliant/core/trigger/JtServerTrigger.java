@@ -3,8 +3,12 @@ package brilliant.core.trigger;
 import brilliant.core.XBApplication;
 import brilliant.core.XBConfig;
 import brilliant.core.fun.XBPluginFun;
+import brilliant.core.model.XBResource;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * @Created by: Yukai
@@ -28,7 +32,8 @@ public class JtServerTrigger implements XBPluginFun<XBApplication, String[]> {
         server.join();
         server.start();
 
-        app.getContainer().put("org.eclipse.jetty.servlet.ServletContextHandler",context);
+        app.getContainer().put("org.eclipse.jetty.servlet.ServletContextHandler$contextHandler",context);
+
     }
 
 

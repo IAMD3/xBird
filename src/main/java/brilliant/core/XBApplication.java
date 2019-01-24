@@ -3,6 +3,7 @@ package brilliant.core;
 import brilliant.core.fun.XBPluginFun;
 import brilliant.core.initializer.XBInitializer;
 import brilliant.core.model.XBResource;
+import brilliant.core.trigger.ClassCollectTrigger;
 import brilliant.core.trigger.JtServerTrigger;
 import brilliant.utils.ResourceUtil;
 
@@ -31,12 +32,15 @@ public class XBApplication {
             Set<File> files = XBScanner.scanClass(locator);
             // param1: resource & param2 : split point
             resources = ResourceUtil.assembleXBResource(files, locator.getPackage().getName());
+            resources.forEach(res-> System.out.println(res.getFile().getAbsolutePath()));
+/*
 
             // initialization components
             initializers.forEach(ini -> ini.doInit());
 
             // initiate triggers
             initTriggers(this, args);
+*/
 
 
         }
@@ -49,6 +53,7 @@ public class XBApplication {
     public void initTriggers(XBApplication app, String[] args) throws Exception {
         // todo the triggers should be read from IoC file
         triggers.add(new JtServerTrigger());
+        triggers.add(new ClassCollectTrigger());
 
         for (XBPluginFun<XBApplication, String[]> e : triggers) {
             e.run(app, args);

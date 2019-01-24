@@ -31,6 +31,11 @@
             <version>1.16.18</version>
             <scope>provided</scope>
         </dependency>-->
+       <!-- <dependency>
+            <groupId>org.eclipse.core</groupId>
+            <artifactId>runtime</artifactId>
+            <version>3.3.100-v20070530</version>
+        </dependency>-->
 
     </dependencies>
 
@@ -47,6 +52,32 @@
             <encoding>UTF-8</encoding>
         </configuration>
     </plugin>
+
+        <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+                <finalName>${project.artifactId}</finalName>
+                <appendAssemblyId>false</appendAssemblyId>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <mainClass>brilliant.Draft</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <id>make-assembly</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
     </plugins>
     </build>
 

@@ -11,6 +11,6 @@ public class ClassInitializer implements XBInitializer {
 
     @Override
     public void doInit() {
-
+        //todo
     }
 }

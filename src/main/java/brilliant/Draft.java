@@ -1,6 +1,7 @@
 package brilliant;
 
 
+import brilliant.core.XBApplication;
 import brilliant.core.servlet.XBSocketServlet;
 import org.eclipse.jetty.server.Request;
 import org.eclipse.jetty.server.Server;
@@ -33,7 +34,7 @@ public class Draft {
         File file = new File(path_parse);
         File[] files = file.listFiles();
 */
-
+/*
         Server server = new Server(9999);
 
         ServletContextHandler context = new ServletContextHandler();
@@ -43,8 +44,8 @@ public class Draft {
         server.start();
 
         context.addServlet(XBSocketServlet.class,"/akkk");
-        context.addServlet(XBSocketServlet.class,"/akkk/aaa");
-
+        context.addServlet(XBSocketServlet.class,"/akkk/aaa");*/
+        new XBApplication(Draft.class,args);
     }
 
     static class TryHandler extends AbstractHandler {
