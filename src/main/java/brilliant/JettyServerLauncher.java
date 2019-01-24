@@ -3,6 +3,7 @@ package brilliant;
 import brilliant.core.XBHandler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
+
 import java.util.Arrays;
 
 public class JettyServerLauncher {
@@ -29,12 +30,13 @@ public class JettyServerLauncher {
 
     private static void startJetty(int port) throws Exception {
         server = new Server(port);
-        // server.setHandler(getWebAppContext());
+        // trigger.setHandler(getWebAppContext());
         ContextHandler contextHandler = new ContextHandler();
+        contextHandler.setContextPath("/abc");
         contextHandler.setHandler(new XBHandler());
-        contextHandler.setContextPath("/demo");
 
-        server.setHandler(contextHandler);
+
+        server.setHandler(new XBHandler());
         server.start();
         server.join();
     }

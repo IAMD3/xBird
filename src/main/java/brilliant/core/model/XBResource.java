@@ -11,7 +11,7 @@ import java.io.File;
 
 public class XBResource {
     private File file;
-    private String className;
+    private String qualifiedClassName;
     private String packageName;
     private String absoluteClassPath;
 
@@ -23,12 +23,12 @@ public class XBResource {
         this.file = file;
     }
 
-    public String getClassName() {
-        return className;
+    public String getQualifiedClassName() {
+        return qualifiedClassName;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setQualifiedClassName(String qualifiedClassName) {
+        this.qualifiedClassName = qualifiedClassName;
     }
 
     public String getPackageName() {

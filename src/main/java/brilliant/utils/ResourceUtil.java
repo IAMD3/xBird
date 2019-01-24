@@ -53,7 +53,7 @@ public class ResourceUtil {
 
             resource.setAbsoluteClassPath(classPath);
             resource.setFile(f);
-            resource.setClassName(qualifiedClassName);
+            resource.setQualifiedClassName(qualifiedClassName);
             resource.setPackageName(classPackageName);
 
             resources.add(resource);

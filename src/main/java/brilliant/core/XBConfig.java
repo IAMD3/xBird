@@ -12,6 +12,11 @@ import java.util.List;
  * @Description : Yukai is so handsome xxD, the config of the XBSocket
  */
 public class XBConfig {
+    // if embedded into a framework or triiger the server independently
+    public static boolean isEmbedded;
+    // the port of the server (in case the attribute `isEmbedded = false`)
+    public static int port;
+
     // if use the functionality of the webSocket or not xxxDD
     public static boolean ifUse;
     // the collection of the types
@@ -32,6 +37,12 @@ public class XBConfig {
         types.add(SocketType.YkSocket);
 
 
+        // server config
+        isEmbedded = false;
+
+        if (!isEmbedded) {
+            port = 9999;
+        }
     }
 
 }

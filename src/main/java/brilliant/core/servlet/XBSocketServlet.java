@@ -1,5 +1,6 @@
-package brilliant.core;
+package brilliant.core.servlet;
 
+import brilliant.core.CoreCreator;
 import org.eclipse.jetty.websocket.servlet.WebSocketServlet;
 import org.eclipse.jetty.websocket.servlet.WebSocketServletFactory;
 import javax.servlet.annotation.WebServlet;

@@ -1,13 +1,16 @@
 package brilliant;
 
 
-import brilliant.core.XBApplication;
-import brilliant.core.XBScanner;
+import brilliant.core.servlet.XBSocketServlet;
+import org.eclipse.jetty.server.Request;
+import org.eclipse.jetty.server.Server;
+import org.eclipse.jetty.server.handler.AbstractHandler;
+import org.eclipse.jetty.servlet.ServletContextHandler;
 
-import java.io.File;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Set;
 
 /**
  * @Created by: Yukai
@@ -15,7 +18,7 @@ import java.util.Set;
  * @Description : Yukai is so handsome xxD
  */
 public class Draft {
-    public static void main(String[] args) throws IOException, URISyntaxException {
+    public static void main(String[] args) throws Exception {
         //System.out.println((char)42);
         //System.out.println((char)63);
      /*   String pName =Draft.class.getPackage().getName();
@@ -31,6 +34,34 @@ public class Draft {
         File[] files = file.listFiles();
 */
 
-        new XBApplication(Draft.class);
+        Server server = new Server(9999);
+
+        ServletContextHandler context = new ServletContextHandler();
+
+        server.setHandler(context);
+
+        server.start();
+
+        context.addServlet(XBSocketServlet.class,"/akkk");
+        context.addServlet(XBSocketServlet.class,"/akkk/aaa");
+
+    }
+
+    static class TryHandler extends AbstractHandler {
+
+        @Override
+        public void handle(String s, Request request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
+            System.out.println("aa:" + s);
+            request.setHandled(true);
+        }
+    }
+
+    static class TryHandler_2 extends AbstractHandler {
+
+        @Override
+        public void handle(String s, Request request, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
+            System.out.println("bb:" + s);
+            request.setHandled(true);
+        }
     }
 }
