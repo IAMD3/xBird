@@ -29,8 +29,13 @@ public class XBScanner {
         Set<URL> urls = findUrls(packageName);
 
         for (URL url : urls) {
-            File file = TypeParseUtil.urlToFile(url);
-            ResourceUtil.assembleClassFiles(file, fileContainer, new ClassPathMacher());
+            if ("file".equals(url.getProtocol())) {
+                File dir = TypeParseUtil.urlToFile(url);
+                ResourceUtil.assembleFileClasses(dir, fileContainer, new ClassPathMacher());
+            }
+            if ("jar".equals(url.getProtocol())) {
+                ResourceUtil.assembleJarClasses(url, fileContainer, new ClassPathMacher());
+            }
         }
 
         return fileContainer;
@@ -50,12 +55,15 @@ public class XBScanner {
         Set<URL> result = new LinkedHashSet();
         ClassLoader cl = XBScanner.class.getClassLoader();
 
-        //Enumeration resourceUrls = cl != null ? cl.getResources(packagePath) : ClassLoader.getSystemResources(packagePath);
-        Enumeration resourceUrls = ClassLoader.getSystemResources(packagePath);
+        System.out.println("classLoader is null?" + cl == null);
+        System.out.println("classLoader info:" + cl);
+        Enumeration resourceUrls = cl != null ? cl.getResources(packagePath) : ClassLoader.getSystemResources(packagePath);
+        // Enumeration resourceUrls = ClassLoader.getSystemResources(packagePath);
 
         while (resourceUrls.hasMoreElements()) {
             URL url = (URL) resourceUrls.nextElement();
             result.add(url);
+            System.out.println("url is:" + url.toString());
         }
 
         return result;

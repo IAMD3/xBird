@@ -3,7 +3,6 @@ package brilliant.utils.parsers;
 
 import java.io.File;
 import java.util.Arrays;
-import java.util.LinkedHashSet;
 import java.util.List;
 
 /**
@@ -35,7 +34,8 @@ public class StringParseUtil {
     // 生成类完整名
     public static String converToQualifiedClassName(String absolutePath, String packageName) {
         int firstOccurredIndex = absolutePath.indexOf(StringParseUtil.convertToResourcePath(packageName));
-
+        System.out.println("package name is "+packageName);
+        System.out.println("first occured index is :"+firstOccurredIndex);
         return convertToPackageName(absolutePath.substring(firstOccurredIndex));
     }
 
@@ -49,11 +49,11 @@ public class StringParseUtil {
             return pieces[0];
         }
 
-        List<String> piecesList = Arrays.asList(Arrays.copyOf(pieces,pieces.length-1));
+        List<String> piecesList = Arrays.asList(Arrays.copyOf(pieces, pieces.length - 1));
 
         StringBuilder sb = new StringBuilder();
         piecesList.forEach(str -> sb.append(str + "."));
-        sb.deleteCharAt(sb.length() - 1);
+        if (sb.length() > 0) sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
 }

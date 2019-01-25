@@ -28,11 +28,14 @@ public class XBApplication {
 
     public XBApplication(Class locator, String args[]) throws Exception {
         if (!isInit) {
+            System.out.println("start");
             // return a Set obj with 0 element if no *.class file scanned
             Set<File> files = XBScanner.scanClass(locator);
             // param1: resource & param2 : split point
             resources = ResourceUtil.assembleXBResource(files, locator.getPackage().getName());
             resources.forEach(res-> System.out.println(res.getFile().getAbsolutePath()));
+
+            System.out.println("file size is:"+files.size());
 /*
 
             // initialization components
